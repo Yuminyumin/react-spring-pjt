@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.HashMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -42,11 +44,24 @@ public class BbsController {
     }
 
     @PostMapping("/save")
-    public String save(@RequestBody BbsRequestDTO params) {
+    public ResponseEntity<Void> save(@RequestBody BbsRequestDTO params) {
         System.out.println("client endpoint : /bbs/save");
         System.out.println("params : "+params);
         bbsService.create(params);
-        return null;
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/view/{id}")
+    public ResponseEntity<BbsResponseDTO> view(@PathVariable(name="id") Integer id) {
+        System.out.println("client endpoint : /bbs/view");
+        System.out.println("id params value : "+id);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("id", id);
+
+        BbsResponseDTO result = bbsService.find(map);
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+    
     
 }
