@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
 import react.spring.react_spring_pjt.bbs.service.BbsService;
 
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/bbs")
@@ -36,4 +40,13 @@ public class BbsController {
             return new ResponseEntity<>(list, HttpStatus.OK);
         }
     }
+
+    @PostMapping("/save")
+    public String save(@RequestBody BbsRequestDTO params) {
+        System.out.println("client endpoint : /bbs/save");
+        System.out.println("params : "+params);
+        bbsService.create(params);
+        return null;
+    }
+    
 }
