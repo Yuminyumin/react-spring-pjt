@@ -7,7 +7,7 @@
     <!-- findAll --> 
 
     <select id="findAllRow"
-            resultType="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO">
+            resultType="bbsResponseDTO">
         SELECT ID, TITLE, CONTENT
         FROM   TB_BBS
     </select>
@@ -15,7 +15,7 @@
     <!-- insertRow --> 
 
     <insert id="insertRow"
-            parameterType="react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO">
+            parameterType="bbsRequestDTO">
         insert into tb_bbs(title, content)
         values (#{title}, #{content})
     </insert>
@@ -24,7 +24,7 @@
 
     <select id="findRow"
             parameterType="java.util.HashMap"
-            resultType="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO">
+            resultType="bbsResponseDTO">
         SELECT ID, TITLE, CONTENT
         FROM   TB_BBS
         WHERE  ID = #{id}
@@ -34,9 +34,34 @@
 
     <select id="findByIdComment"
             parameterType="java.util.HashMap"
-            resultType="react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO">
+            resultType="commentResponseDTO">
         SELECT ID, CONTENT, BBSID
         FROM   TB_COMMENT
         WHERE  BBSID = #{id}
     </select>
+
+    <!-- createCommentRow --> 
+
+    <insert id="createCommentRow"
+            parameterType="commentRequestDTO">
+        INSERT INTO TB_COMMENT(CONTENT, BBSID)
+        VALUES      (#{content}, #{bbsid})
+    </insert>
+
+    <!-- deleteRow --> 
+
+    <delete id="deleteRow"
+            parameterType="java.util.HashMap">
+        DELETE FROM tb_bbs
+        WHERE       ID=#{id}
+    </delete>
+
+    <!-- updateRow --> 
+
+    <update id="updateRow"
+            parameterType="bbsRequestDTO">
+        UPDATE TB_BBS
+        SET TITLE = #{title}, CONTENT = #{content}
+        WHERE ID = #{id}
+    </update>
 </mapper>

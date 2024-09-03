@@ -3,8 +3,10 @@
 
 <configuration>
     <typeAliases>
-        <typeAliases alias="bbsResponseDTO" type="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO"/>
-        <typeAliases alias="bbsRequestDTO" type="react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO"/>
+        <typeAlias alias="bbsResponseDTO"     type="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO"/>
+        <typeAlias alias="bbsRequestDTO"      type="react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO"/>
+        <typeAlias alias="commentResponseDTO" type="react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO"/>
+        <typeAlias alias="commentRequestDTO"  type="react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO"/>
     </typeAliases>
 
 </configuration>
