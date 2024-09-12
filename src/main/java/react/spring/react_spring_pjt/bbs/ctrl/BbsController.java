@@ -114,7 +114,7 @@ public class BbsController {
     }
     
     @PutMapping("/update")
-    public ResponseEntity<Void> putMethodName(@RequestBody BbsRequestDTO params) {
+    public ResponseEntity<Void> update(@RequestBody BbsRequestDTO params) {
         System.out.println("client endpoint : bbs/update");
         System.out.println("params : " + params);
         
